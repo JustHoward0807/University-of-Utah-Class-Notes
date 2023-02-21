@@ -53,14 +53,14 @@ $$ TurnaroundTime = completionTime - arrivalTime $$
   * Also called FCFS (First come first served)
   * run jobs in arrival_time order
 
-![FIFO Gantt Chart](/Images/FIFO-Gantt-Chart.png)
+![FIFO Gantt Chart](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png/Images/FIFO-Gantt-Chart.png)
 > Gantt chart: Illustrates how jobs are scheduled over time on a CPU
 
 $$ 20S = (10 + 20 + 30) / 3 $$
 
 10 = Process A, 20 = Process B, 30 = Process C
 
-![FIFO Gantt Chart](/Images/FIFO-Gantt-Chart-2.png)
+![FIFO Gantt Chart](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png/Images/FIFO-Gantt-Chart-2.png)
 Average turnaround time: 70s (60 + 70 + 80) / 3 ( ***<ins>Convoy Effect</ins>*** )
 
 Problem with FIFO Scheduler: ==Turnaround time suffers when short jobs wait behind long jobs.==
@@ -70,12 +70,12 @@ Problem with FIFO Scheduler: ==Turnaround time suffers when short jobs wait behi
 * SJF (Shortest Job First)
   * Choose job with smallest run_time
 
-![SJF Gantt Chart](/Images/SJF-Gantt-Chart.png)
+![SJF Gantt Chart](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png/Images/SJF-Gantt-Chart.png)
 Average turnaround time: (80 + 10 + 20) / 3 = ~36.7s
 Shorter job before longer job improves turnaround time of short more than it harms turnaround time of long.
 > Still a useless algorithm since we stll don't know which job is shortest in advanced.
 
-![SJF Gantt Chart](/Images/SJF-Gantt-Chart-2.png))
+![SJF Gantt Chart](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png/Images/SJF-Gantt-Chart-2.png))
 Avearge turnaround time: (60 + (70 - 10) + (80 - 10)) / 3 = 63.3s
 
 ### Preemptive Scheduling
@@ -90,13 +90,13 @@ Avearge turnaround time: (60 + (70 - 10) + (80 - 10)) / 3 = 63.3s
 
 ### STCF
 
-![STCF Gantt Chart](/Images/STCF-Gantt-Chart.png)
+![STCF Gantt Chart](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png/Images/STCF-Gantt-Chart.png)
 Average turnaround time with SJF: 63.3s
 Average turnaround time with STCF: 36.7s
 
 ### Reponse Time
 
-![Response time](/Images/Response-time.png)
+![Response time](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png/Images/Response-time.png)
 $$ reponseTime = firstRunTime - arrivalTime $$
 
 FIFO. SJF and STCF have poor response time
@@ -107,7 +107,7 @@ FIFO. SJF and STCF have poor response time
   * Alternate read processes
   * Switch after fixed-length ==time-slice== (or ==quantum==)
 
-![FIFO RR Response time](/Images/FIFO-RR-Response-time.png)
+![FIFO RR Response time](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png/Images/FIFO-RR-Response-time.png)
 FIFO average response time = (0 + 5 + 10) / 3 = 5
 RR average response time = (0 + 1 + 2) / 3 = 1
 
