@@ -57,6 +57,7 @@ $$ TurnaroundTime = completionTime - arrivalTime $$
 > Gantt chart: Illustrates how jobs are scheduled over time on a CPU
 
 $$ 20S = (10 + 20 + 30) / 3 $$
+
 10 = Process A, 20 = Process B, 30 = Process C
 
 ![FIFO Gantt Chart](/Images/FIFO-Gantt-Chart-2.png)
