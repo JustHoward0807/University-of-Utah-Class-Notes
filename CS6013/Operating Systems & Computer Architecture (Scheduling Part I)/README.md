@@ -33,9 +33,9 @@
 ## Workload Assumptions
 
 1. Each job runs for the same amount of time. ***- false***
-1. All jobs arrive at the same time ***- false***
-1. All jobs only use the CPU (no I/O) ***- false***
-1. Run-time of each job is known ***- false***
+2. All jobs arrive at the same time ***- false***
+3. All jobs only use the CPU (no I/O) ***- false***
+4. Run-time of each job is known ***- false***
 
 ## Scheduling Basics
 
