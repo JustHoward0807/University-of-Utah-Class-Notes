@@ -12,11 +12,10 @@
 
 ## Scheduling Performance Metrics
 
-
-* $\colorbox{blue}{Minimize turnaround time}$
+* `Minimize turnaround time`
   * Do not want to wait long for job to complete
   * Completion - arrival_time
-* $\colorbox{blue}{Minimize response time}$
+* `Minimize response time`
   * Schedule interactive jobs promptly so users see output quickly
   * Initial schedule time - arrival time
 * Minimize waiting time
@@ -25,9 +24,9 @@
   * Want many jobs to complete per unit of time
 * Maximize resource utilization
   * Keep expensive devices busy (So it want waste money on super computer)
-* $\colorbox{blue}{Minimize overhead}$
+* `Minimize overhead`
   * Reduce number of context switches
-* $\colorbox{blue}{Maximize fairness}$
+* `Maximize fairness`
   * All job get same amount of CPU over some time interval
 
 ## Workload Assumptions
@@ -64,7 +63,7 @@ $$ 20S = (10 + 20 + 30) / 3 $$
 ![FIFO Gantt Chart](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-Gantt-Chart-2.png)
 Average turnaround time: 70s (60 + 70 + 80) / 3 ( ***<ins>Convoy Effect</ins>*** )
 
-Problem with FIFO Scheduler: $\colorbox{blue}{Turnaround time suffers when short jobs wait behind long jobs.}$
+Problem with FIFO Scheduler: `Turnaround time suffers when short jobs wait behind long jobs.`
 
 ### SJF
 
@@ -82,12 +81,12 @@ Avearge turnaround time: (60 + (70 - 10) + (80 - 10)) / 3 = 63.3s
 ### Preemptive Scheduling
 
 * Non-preemptive
-  * FIFO & SJF are $\colorbox{blue}{non-preemptive}$
+  * FIFO & SJF are `non-preemptive`
   * Only schedule new job when previous job voluntarily relinquishes CPU (perform I/O or exits)
 
 * Preemptive
-  * STCF (<ins>Shortest Time-to-Completion First</ins>) is $\colorbox{blue}{preemptive}$. Potentially schedule different job at any point by taking CPU away from running job.
-  * Always run job that will complete the quickest ($\colorbox{blue}{Allow interuptions}$).
+  * STCF (<ins>Shortest Time-to-Completion First</ins>) is `preemptive`. Potentially schedule different job at any point by taking CPU away from running job.
+  * Always run job that will complete the quickest (`Allow interuptions`).
 
 ### STCF
 
@@ -102,11 +101,11 @@ $$ reponseTime = firstRunTime - arrivalTime $$
 
 FIFO. SJF and STCF have poor response time
 
-#### RR
+### RR
 
 * RR (Round Robin)
   * Alternate read processes
-  * Switch after fixed-length $\colorbox{blue}{time-slice}$ (or $\colorbox{blue}{quantum}$)
+  * Switch after fixed-length `time-slice` (or `quantum`)
 
 ![FIFO RR Response time](/CS6013/Operating%20Systems%20&%20Computer%20Architecture%20(Scheduling%20Part%20I)/Images/FIFO-RR-Response-time.png)
 FIFO average response time = (0 + 5 + 10) / 3 = 5
