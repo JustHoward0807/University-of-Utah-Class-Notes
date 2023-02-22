@@ -24,6 +24,7 @@ Rule 1: If Priority(A) > Priority(B), A runs
 ```
 
 Rule 2: If Priority(A) == Priority(B), A & B run in RR
+
 `Shared time in CPU`
 
 ```mermaid
@@ -68,5 +69,29 @@ Approach:
 
 1. Understand goals (metrics) and workload, then design scheduler around that.
 2. General purpose schedulers need to support processes with different goals.
-3. Past behaviour is good predictor of future behavior.
+3. Past behavior is good predictor of future behavior.
 4. Random algorithms (lottery scheduling) can be simple to implement, and avoid corner cases.
+
+## IPC (Interprocess communication)
+
+***Enable process to communicate with each other to share information.***
+
+* Pipes (half duplex)
+* FIFOs (named pipe)
+* Stream pipes (full duplex)
+* Named stream pipes
+* Message queues
+* Semaphores
+* Shared Memory
+* Sockets
+* Streams
+
+### Pipes
+
+* Oldest (and simplest) form of UNIX IPC
+* Half duplex - `Data flows in only one direction`.
+* Only usable between processes with a common ancestor.
+  * Usually parent-child
+  * Also child-child.
+* In Unix, all processes in a pipe are started simultaneously.
+* Pipes implement buffering under the hood if read / write speeds of the two processes are different.

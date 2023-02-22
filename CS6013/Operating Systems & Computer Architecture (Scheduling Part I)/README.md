@@ -113,3 +113,5 @@ RR average response time = (0 + 1 + 2) / 3 = 1
 
 RR pro - Average turnaround time with equal job lengths is bad
 RR con - If run time unknown, short jobs get change to run, finish fast fair.
+
+[Part2](/CS6013/Operating%20Systems%20%26%20Computer%20Architecture%20(Scheduling%20Part%20II)/README.md)
