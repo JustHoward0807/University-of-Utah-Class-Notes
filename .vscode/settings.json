@@ -1,9 +1,13 @@
 {
     "cSpell.words": [
         "alloc",
+        "Cyphertext",
+        "Feistel",
         "Interprocess",
         "malloc",
+        "MITM",
         "mmap",
+        "Rinjdal",
         "sbrk",
         "struct"
     ]
