@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "alloc",
+        "CSPRNG",
         "Cyphertext",
         "Feistel",
         "Interprocess",
@@ -8,6 +9,7 @@
         "MITM",
         "mmap",
         "Rinjdal",
+        "Rivest",
         "sbrk",
         "struct"
     ]

@@ -162,7 +162,73 @@ xor with the round key
 ## What to do with long messages? Stream Cypher
 
 **Stream Cypher**
-Take plain text split into bytes(bits), then create pseudo random number sequence called "key stream". Xor together.
+Take plain text split into bytes(bits), then create pseudo random number sequence called "key stream". Xor together. -> CT
 ![Stream Cypher](/CS6014/%20Cryptography/Images/Stream%20Cypher.png)
 `CypherText xor Key stream -> (PlainText xor Key stream) xor key stream
 PlainText xor (key stream xor key stream) = PlainText`
+
+### Key stream
+
+Pseudo-random (unpredictable, but not random(can't decrypt))
+
+Way produce key stream: 
+
+#### "Cryptographically secure Pseudo random number generator (CSPRNG)"
+
+CS requirements
+attacker sees k bits of output: they can't predict next bit.
+
+Maximize "period" of CSPRNG as long of a sequence as possible before getting duplicate internal state.
+
+#### RC4 - (broken)
+
+> Ron's Code. Ron Rivest
+
+Initialization
+
+1. takes a key
+2. shuffle internal state based on that key
+
+Generation
+byte nextByte() - Give next byte also shuffle in internal state mix it can't tell what happened before.
+
+Internal state
+![RC4](/CS6014/%20Cryptography/Images/RC4.png)
+
+**Init(key):**
+
+```C
+s = [0,1.......255]
+j = 0
+for i = 0...255
+    j = (j + s[i] + key[i % length]) % 256
+    swap(s[i], s[j])
+i = j = 0
+```
+
+**byte nextByte():**
+
+```C
+i++ % 256
+j += s[i] % 256
+swap(s[i], s[j])
+output = s[s[i]/s[j] % 256]
+```
+
+#### ChaCha20 (Used it now) Modern Stream cypher
+
+3 inputs to "init"
+init(key, stream pos, "nonce") 
+"nonce" -> number used once
+
+xor rotate instead of shuffle array
+
+#### Attack
+
+"Bit flipping attack"
+Only know the message and can modify the cypher text
+
+Confidential
+No message integrity
+
+Block Cypher also have confidential, but has closer message integrity
