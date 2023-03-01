@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
         "alloc",
+        "ciphertext",
         "CSPRNG",
+        "cypher",
         "Cyphertext",
         "Feistel",
         "Interprocess",

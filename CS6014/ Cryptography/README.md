@@ -56,18 +56,23 @@ Benefits of `xor` and `+`. `+` need carrying (which is inconvenient)
 ### Kinds of attacks
 
 * Most difficult: **Cyphertext only**
-    Attacker only knows cyphertext(CT).
+    The attacker has access only to the encrypted ciphertext, but not the corresponding plaintext or the key used to encrypt it. The goal of the attacker is to try to deduce any useful information about the plaintext or the key from the ciphertext.
 
 * **Known Plaintext**
     CT/PT pairs - know particular plain text encrypted cypher text is
+    The attacker has access to both the plaintext and the corresponding ciphertext. The attacker's goal is to use this information to try to deduce the key used to encrypt the plaintext.
+    Caesar Cypher is well known weak to know plaintext attack.
 
 * **Chosen Plaintext**
     Attacker can generate PT/CT pairs with PT of their choice.
+    The attacker has the ability to choose and encrypt their own plaintext messages, and observe the resulting ciphertext. The attacker's goal is to use this information to try to deduce the key used to encrypt the plaintext. This type of attack is considered the most powerful, as the attacker has more control over the input data and can potentially learn more about the encryption system.
 
 #### Properties of CT to against this
 
 * CT should appear random (But not actually random, otherwise, it can't be decrypted)
 * Small change in PT -> Big change in CT. ***`"Avalanche Effect"`***
+The ciphertext avalanche effect is a desirable property of a secure cryptographic algorithm. It means that if a small change is made to the plaintext (even one bit), the resulting ciphertext should be drastically different.
+The avalanche effect is achieved through the use of complex substitution and permutation operations such as AES.
 
 ## Block Cyphers (Symmetric)
 
@@ -75,7 +80,7 @@ Operates on "block".
 Plaintext: "Block sized" (produce) Cyphertext: same size.
 **Security depends on key size and block size**
 n bit key
-$2^n$ keys expect $2(^n-^1)$ guesses to decode without knowing the key.
+$2^n$ keys expect $2(^n-^1)$ (i.e., all possible keys except the correct one) guesses to decode without knowing the key.
 
 2 bit block -> <ins>12 possible output tables</ins>
 how to crack this?
@@ -113,6 +118,9 @@ Designed for hardware implementation not software.
 56 bits is too small for a key.
 EFF built a DES cracker in the 90's
 
+> Additional notes from chatGPT:
+> DES is vulnerable to brute-force attacks.
+
 ### 3 DES
 
 (Lecture only talk not detail)
@@ -124,40 +132,41 @@ $$Encrypt(Decrypt(Encrypt(plainText, k1), k2))$$
 
 > <ins>**Developed by contest by Rinjdal**</ins>
 > 128 bits block size (Rinjdal is variable)
-> Key size: 128, 192, 256 bits
+> Key size: 128 (10 rounds), 192(12 rounds), 256(14 rounds) bits
 > Efficient in Software. Specialized hardware instructions on modern CPU's
 
 Numbers of rounds encryption depends on key size: bigger key -> more rounds
 
-Sub Bytes - Each byte in the state using a 256 entry table (defined by the standard).
+1. Sub Bytes - Each byte in the state using a 256 entry table (defined by the standard). substitute
 
-``` C
-b[i] = table[b[i]]
-```
+    ``` C
+    b[i] = table[b[i]]
+    ```
 
-Shift rows - for each i rotate row i left i columns.
+2. Shift rows - for each i rotate row i left i columns.
 
-![Shift row](/CS6014/%20Cryptography/Images/Shift%20row.png)
+    ![Shift row](/CS6014/%20Cryptography/Images/Shift%20row.png)
 
-``` C
-// Note that row 0 is left alone
-for i = 0...4
-    rotate row[i] left
-        i slots
-```
+    ``` C
+    // Note that row 0 is left alone
+    for i = 0...4
+        rotate row[i] left
+            i slots
+    ```
 
-Mix columns -
+3. Mix columns -
 
-``` C
-for each column
-    for each row
-        lookup column for byte[row][col]
-        rotate that result
-    xor all the column entrees together
-```
+    ``` C
+    for each column
+        for each row
+            lookup column for byte[row][col]
+            rotate that result
+        xor all the column entrees together
+    ```
 
-Add Round key -
-xor with the round key
+4. Add Round key - xor with the round key
+
+[AES Explain](https://www.youtube.com/watch?v=O4xNJsjtN6E&t=326s)
 
 ## What to do with long messages? Stream Cypher
 
@@ -171,7 +180,7 @@ PlainText xor (key stream xor key stream) = PlainText`
 
 Pseudo-random (unpredictable, but not random(can't decrypt))
 
-Way produce key stream: 
+Way produce key stream:
 
 #### "Cryptographically secure Pseudo random number generator (CSPRNG)"
 
@@ -218,7 +227,7 @@ output = s[s[i]/s[j] % 256]
 #### ChaCha20 (Used it now) Modern Stream cypher
 
 3 inputs to "init"
-init(key, stream pos, "nonce") 
+init(key, stream pos, "nonce")
 "nonce" -> number used once
 
 xor rotate instead of shuffle array
@@ -232,3 +241,59 @@ Confidential
 No message integrity
 
 Block Cypher also have confidential, but has closer message integrity
+
+## Hashing
+
+Crypto Hash functions must be REALLY collision resistant.
+Output should appear random - ***`"Avalanche Effect"`***
+Don't want to be reversible. Intend to lose information.
+
+Scenario:
+
+* Attack knows input X someone try to send. And attacker want to find Y with H(x) == H(Y). It slightly harder.
+* Attacker can pick X,Y. It easier. But still should be infeasible for attacker.
+* Knowing H(x), still don't know anything about X.
+  Sometime use hash function to lose information intentionally.
+
+### Chosen prefix attack
+
+Document -> H(Doc)
+Forge Fake Document -> H (Doc)
+// ~~~~
+
+### Collision Avoidance
+
+**Birthday Paradox**
+2 people 364/365) not have the same day birthday.
+2,3,4 people $(364/365) (363/365) (362/365)$
+
+d possible hashes -> $2^b$
+n hashes
+50% chance of collision $ around sqrt(2log2*3)$ $sqrt(2log2 *2^b)$ = $2(^b/^2)$
+
+### Examples "Merkle Damgard" (MD)
+
+IV (Initialization Vector)
+//TODO: Give images here
+
+#### Wide used: MD5, SHA-1(Secure hash Algorithm 128bits) But broken
+
+**SHA-2** (256, 512 bit SHA-1) Similar to SHA-1 but bigger.
+
+**SHA-3** Totally different design to SHA-2.
+
+**BLAKE** -> Built on ChaCha20
+
+#### HMAC Message authentication Code
+
+$$H(K+H(K+M))$$
+
+Passwords
+service don't want to know your password. They want to know that you know it.
+
+Server cannot store x and y bc it might get leaded. So it store H(x). After log in it H(y) to see.
+
+Server store hashes of password. They hash provided password on log in.
+$H(x) = H(y)$
+x = y
+Difference encrypted password and hash password. Encrypted password is reversible.
