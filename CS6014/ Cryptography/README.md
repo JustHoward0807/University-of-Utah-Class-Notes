@@ -105,9 +105,7 @@ Key size: 56 bits (too small)
 
 #### **"Feistel networks Network"**
 
-![Feistel networks](/CS6014/%20Cryptography/Images/Feistel%20networks.png)
-
-Feistel networks.png
+![Feistel networks](https://github.com/JustHoward0807/University-of-Utah-Class-Notes/blob/main/CS6014/%20Cryptography/Images/Feistel%20networks.png?raw=true)
 
 $^Kn$ = round key
 Encryption and Decryption are same algorithm.
