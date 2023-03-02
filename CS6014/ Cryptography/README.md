@@ -107,6 +107,8 @@ Key size: 56 bits (too small)
 
 ![Feistel networks](/CS6014/%20Cryptography/Images/Feistel%20networks.png)
 
+Feistel networks.png
+
 $^Kn$ = round key
 Encryption and Decryption are same algorithm.
 F function can be one way (not reversible)
@@ -297,3 +299,6 @@ Server store hashes of password. They hash provided password on log in.
 $H(x) = H(y)$
 x = y
 Difference encrypted password and hash password. Encrypted password is reversible.
+
+## Midterm wrap up:
+
